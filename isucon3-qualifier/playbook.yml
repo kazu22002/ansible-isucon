@@ -63,7 +63,7 @@
     # xbuild
     - yum: name=gcc
     - become_user: isucon
-      git: repo=https://github.com/tagomoris/xbuild.git dest=/home/isucon/.xbuild
+      git: repo=https://github.com/kazu22002/xbuild.git dest=/home/isucon/.xbuild
 
     # go
     - become_user: isucon
