@@ -46,15 +46,15 @@
 
     # xbuild
     - yum: name=gcc
-    - sudo_user: isucon
+    - su_user: isucon
       git: repo=https://github.com/tagomoris/xbuild.git dest=/home/isucon/.xbuild
 
     # nodejs
-    - sudo_user: isucon
+    - su_user: isucon
       shell: .xbuild/node-install v6.11.0 /home/isucon/local/node-v6.11
       args:
         creates: /home/isucon/local/node-v6.11/bin/node
-    - sudo_user: isucon
+    - su_user: isucon
       shell: |
         set -e
         source ./env.sh
@@ -64,11 +64,11 @@
         creates: /home/isucon/webapp/nodejs/node_modules
 
     # perl
-    - sudo_user: isucon
+    - su_user: isucon
       shell: .xbuild/perl-install 5.16.1 /home/isucon/local/perl-5.16
       args:
         creates: /home/isucon/local/perl-5.16/bin/perl
-    - sudo_user: isucon
+    - su_user: isucon
       shell: |
         set -e
         source ./env.sh
@@ -80,13 +80,13 @@
     - yum: name=openssl-devel
     - yum: name=readline-devel
     - yum: name=zlib-devel
-    - sudo_user: isucon
+    - su_user: isucon
       shell: .xbuild/ruby-install 1.9.3-p551 /home/isucon/local/ruby-1.9
       args:
         creates: /home/isucon/local/ruby-1.9/bin/ruby
-    - sudo_user: isucon
+    - su_user: isucon
       lineinfile: dest=/home/isucon/webapp/ruby/Gemfile regexp="foreman" insertafter="unicorn" line="gem 'foreman'"
-    - sudo_user: isucon
+    - su_user: isucon
       shell: |
         set -e
         source ./env.sh
@@ -97,11 +97,11 @@
 
     # python
     - yum: name=patch
-    - sudo_user: isucon
+    - su_user: isucon
       shell: .xbuild/python-install 2.7.3 /home/isucon/local/python-2.7
       args:
         creates: /home/isucon/local/python-2.7/bin/python
-    - sudo_user: isucon
+    - su_user: isucon
       shell: |
         set -e
         source ./env.sh
@@ -113,13 +113,13 @@
     #- yum: name=tomcat6
     #- get_url: url=http://archive.apache.org/dist/maven/binaries/apache-maven-2.2.1-bin.tar.gz dest=/tmp/
     #- file: path=/home/isucon/local/java-6 state=directory
-    #- sudo_user: isucon
+    #- su_user: isucon
     #  shell: |
     #    tar xf /tmp/apache-maven-2.2.1-bin.tar.bz2 -C /tmp
     #    rsync -a /tmp/apache-maven-2.2.1/ /home/isucon/local/java-6/
     #  args:
     #    creates: /home/isucon/local/java-6/bin/mvn
-    #- sudo_user: isucon
+    #- su_user: isucon
     #  shell: |
     #    set -e
     #    source ./env.sh
@@ -127,7 +127,7 @@
     #    mvn package -P release
 
     # bench
-    - sudo_user: isucon
+    - su_user: isucon
       shell: |
         set -e
         source ./env.sh
