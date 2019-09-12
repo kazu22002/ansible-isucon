@@ -96,17 +96,17 @@
     #     bundle install --deployment --without development
 
     # python
-    - yum: name=patch
-    - become_user: isucon
-      shell: /home/isucon/.xbuild/python-install 2.7.3 /home/isucon/local/python-2.7
-      args:
-        creates: /home/isucon/local/python-2.7/bin/python
-    - become_user: isucon
-      shell: |
-        set -e
-        source /home/isucon/env.sh
-        cd /home/isucon/webapp/python/
-        easy_install flask MySQL-python gunicorn
+    # - yum: name=patch
+    # - become_user: isucon
+    #   shell: /home/isucon/.xbuild/python-install 2.7.3 /home/isucon/local/python-2.7
+    #   args:
+    #     creates: /home/isucon/local/python-2.7/bin/python
+    # - become_user: isucon
+    #   shell: |
+    #     set -e
+    #     source /home/isucon/env.sh
+    #     cd /home/isucon/webapp/python/
+    #     easy_install flask MySQL-python gunicorn
 
     ## java
     #- yum: name=java-1.6.0-openjdk
