@@ -77,23 +77,23 @@
         carton install
 
     # ruby
-    - yum: name=openssl-devel
-    - yum: name=readline-devel
-    - yum: name=zlib-devel
-    - become_user: isucon
-      shell: /home/isucon/.xbuild/ruby-install 1.9.3-p551 /home/isucon/local/ruby-1.9
-      args:
-        creates: /home/isucon/local/ruby-1.9/bin/ruby
-    - become_user: isucon
-      lineinfile: dest=/home/isucon/webapp/ruby/Gemfile regexp="foreman" insertafter="unicorn" line="gem 'foreman'"
-    - become_user: isucon
-      shell: |
-        set -e
-        source /home/isucon/env.sh
-        cd /home/isucon/webapp/ruby/
-        gem install bundler
-        bundle install --no-deployment --without development
-        bundle install --deployment --without development
+    # - yum: name=openssl-devel
+    # - yum: name=readline-devel
+    # - yum: name=zlib-devel
+    # - become_user: isucon
+    #   shell: /home/isucon/.xbuild/ruby-install 1.9.3-p551 /home/isucon/local/ruby-1.9
+    #   args:
+    #     creates: /home/isucon/local/ruby-1.9/bin/ruby
+    # - become_user: isucon
+    #   lineinfile: dest=/home/isucon/webapp/ruby/Gemfile regexp="foreman" insertafter="unicorn" line="gem 'foreman'"
+    # - become_user: isucon
+    #   shell: |
+    #     set -e
+    #     source /home/isucon/env.sh
+    #     cd /home/isucon/webapp/ruby/
+    #     gem install bundler
+    #     bundle install --no-deployment --without development
+    #     bundle install --deployment --without development
 
     # python
     - yum: name=patch
