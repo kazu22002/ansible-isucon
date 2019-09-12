@@ -51,28 +51,28 @@
 
     # nodejs
     - become_user: isucon
-      shell: .xbuild/node-install v6.11.0 /home/isucon/local/node-v6.11
+      shell: /home/isucon/.xbuild/node-install v6.11.0 /home/isucon/local/node-v6.11
       args:
         creates: /home/isucon/local/node-v6.11/bin/node
     - become_user: isucon
       shell: |
         set -e
-        source ./env.sh
-        cd webapp/nodejs/
+        source /home/isucon/env.sh
+        cd /home/isucon/webapp/nodejs/
         npm install
       args:
         creates: /home/isucon/webapp/nodejs/node_modules
 
     # perl
     - become_user: isucon
-      shell: .xbuild/perl-install 5.16.1 /home/isucon/local/perl-5.16
+      shell: /home/isucon/.xbuild/perl-install 5.16.1 /home/isucon/local/perl-5.16
       args:
         creates: /home/isucon/local/perl-5.16/bin/perl
     - become_user: isucon
       shell: |
         set -e
-        source ./env.sh
-        cd webapp/perl/
+        source /home/isucon/env.sh
+        cd /home/isucon/webapp/perl/
         curl -L https://cpanmin.us | perl - Carton
         carton install
 
@@ -81,7 +81,7 @@
     - yum: name=readline-devel
     - yum: name=zlib-devel
     - become_user: isucon
-      shell: .xbuild/ruby-install 1.9.3-p551 /home/isucon/local/ruby-1.9
+      shell: /home/isucon/.xbuild/ruby-install 1.9.3-p551 /home/isucon/local/ruby-1.9
       args:
         creates: /home/isucon/local/ruby-1.9/bin/ruby
     - become_user: isucon
@@ -89,8 +89,8 @@
     - become_user: isucon
       shell: |
         set -e
-        source ./env.sh
-        cd webapp/ruby/
+        source /home/isucon/env.sh
+        cd /home/isucon/webapp/ruby/
         gem install bundler
         bundle install --no-deployment --without development
         bundle install --deployment --without development
@@ -98,14 +98,14 @@
     # python
     - yum: name=patch
     - become_user: isucon
-      shell: .xbuild/python-install 2.7.3 /home/isucon/local/python-2.7
+      shell: /home/isucon/.xbuild/python-install 2.7.3 /home/isucon/local/python-2.7
       args:
         creates: /home/isucon/local/python-2.7/bin/python
     - become_user: isucon
       shell: |
         set -e
-        source ./env.sh
-        cd webapp/python/
+        source /home/isucon/env.sh
+        cd /home/isucon/webapp/python/
         easy_install flask MySQL-python gunicorn
 
     ## java
@@ -130,9 +130,9 @@
     - become_user: isucon
       shell: |
         set -e
-        source ./env.sh
+        source /home/isucon/env.sh
         (
-          cd tools/http_load_isucon2
+          cd /home/isucon/tools/http_load_isucon2
           make
         )
         (
