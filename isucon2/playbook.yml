@@ -136,7 +136,7 @@
           make
         )
         (
-          cd tools
+          cd /home/isucon/tools
           npm install
         )
   
